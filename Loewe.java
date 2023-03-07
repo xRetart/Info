@@ -4,8 +4,6 @@ import java.util.Calendar;
 
 public class Loewe extends Tier {
     private Loewenart art;
-    private Tierart lieblingsessen;
-    private Tierart hassessen;
 
     public Loewe(int groess, int gewicht, String name, Loewenart art, Datum geburtsdatum, Tierart lieblingsessen, Tierart hassessen) {
         this.name = name;
@@ -26,12 +24,14 @@ public class Loewe extends Tier {
         return lieblingsessen;
     }
 
-    public void tierFressen(Tierart art) {
-        if (art == hassessen) {
-            System.out.println("Ihhh! " + art);
+    public boolean fressen(Tier tier) {
+        if (tier instanceof Pinguin) {
+            System.out.println(name + "frisst einen Pinguin.");
+            return true;
         }
-        else if (art == lieblingsessen) {
-            System.out.println("Lecker!" + art);
+        else {
+            System.out.println("In Loewe frisst nur Pinguin");
+            return false;
         }
     }
     public Loewe geburt(String name, int gewicht, int groesse, FischArt hassFisch, FischArt lieblingsFisch) {
