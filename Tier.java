@@ -23,7 +23,9 @@ public abstract class Lebewesen {
 
 public abstract class Tier extends Lebewesen {
     protected String name;
+    protected Tierart art;
     protected Datum geburtsdatum;
+    protected Tierart lieblingsessen;
 
     public String getName() {
         return name;
@@ -31,6 +33,8 @@ public abstract class Tier extends Lebewesen {
     public int getGroesse() {
         return groesse;
     }
+
+    
 
     public int getAlter() {
         Calendar kal = new GregorianCalendar();
@@ -52,6 +56,9 @@ public abstract class Tier extends Lebewesen {
         else {
             return ajahr - geburtsdatum.getJahr() - 1;
         }
+    }
+    public Tierart getArt() {
+        return art;
     }
 }
 
