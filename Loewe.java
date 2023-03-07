@@ -8,7 +8,7 @@ public class Loewe extends Tier {
     public Loewe(int groess, int gewicht, String name, Loewenart art, Datum geburtsdatum, Tierart lieblingsessen, Tierart hassessen) {
         this.name = name;
         this.groesse = groesse;
-        this.art = art;
+        this.art = (Tierart)art;
         this.gewicht = gewicht;
         this.lieblingsessen = lieblingsessen;
         this.hassessen = hassessen;
