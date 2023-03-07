@@ -29,6 +29,10 @@ public class Loewe extends Tier {
             System.out.println(name + "frisst einen Pinguin.");
             return true;
         }
+        else if (tier instanceof Fisch) {
+            System.out.println(name + "frisst einen Fisch.");
+            return true;
+        }
         else {
             System.out.println("In Loewe frisst nur Pinguin");
             return false;
