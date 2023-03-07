@@ -9,6 +9,10 @@ public class Fisch extends Tier {
         this.geburtsdatum = geburtsdatum;
     }
 
+    public boolean fressen(Tier tier) {
+        System.out.println("Fische fressen nichts");
+        return false;
+    }
     public FischArt getArt() {
         return art;
     }
