@@ -1,3 +1,1 @@
-public enum Tierart {
-    Gazelle
-}
+public interface Tierart {}
