@@ -25,13 +25,21 @@ public class Inventar extends Behaelter {
     return super.lagern(gegenstand);
   }
 
-  public boolean uebertragen(Truhe truhe, int index) {
-    Gegenstand gegenstand = entnehmen(index);
-    if (gegenstand == null) {
-      return true;
-    }
+  public boolean entnehmen()
 
-    gewicht -= gegenstand.getGewicht();
-    return truhe.lagern(gegenstand);
+  public void ausgeben() {
+    if (belegt() > 0) {
+      System.out.println("Inhalt des Inventars:");
+
+      Gegenstand[] gegenstaende = getInhalt();
+      for (int i = 0; i < belegt; ++i) {
+        System.out.print(" " + (i + 1) + ". ");
+        gegenstaende[i].ausgeben();
+      }
+      System.out.println("Es sind " + belegt() + " von " + getKapazitaet() + " plätzen belegt.");
+      System.out.println("Es sind " + getGewicht() + " von " + getMaxGewicht() + " gramm genutzt.");
+    } else {
+      System.out.println("Das Inventar ist leer.");
+    }
   }
 }

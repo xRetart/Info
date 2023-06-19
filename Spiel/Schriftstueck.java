@@ -13,4 +13,8 @@ public class Schriftstueck extends Gegenstand {
   public void beschreiben(String neuerInhalt) {
     inhalt = neuerInhalt;
   }
+
+  public void ausgeben() {
+    System.out.println("Schriftstueck");
+  }
 }

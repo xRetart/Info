@@ -24,4 +24,20 @@ public class Truhe extends Behaelter {
 
     return inventar.lagern(gegenstand);
   }
+
+  public void ausgeben() {
+    if (belegt > 0) {
+      System.out.println("Inhalt der Truhe:");
+
+      Gegenstand[] gegenstaende = inhalt;
+      for (int i = 0; i < belegt; ++i) {
+        System.out.print(" " + (i + 1) + ". ");
+        gegenstaende[i].ausgeben();
+      }
+      System.out.println("Es sind " + belegt + " von " + getKapazitaet() + " plätzen belegt.");
+    } else {
+      System.out.println("Die Truhe ist leer.");
+    }
+    System.out.println();
+  }
 }

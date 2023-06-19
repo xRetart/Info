@@ -8,4 +8,6 @@ public abstract class Gegenstand {
   public int getGewicht() {
     return gewicht;
   }
+
+  public abstract void ausgeben();
 }

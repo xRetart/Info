@@ -9,4 +9,8 @@ public class Schluessel extends Gegenstand {
   public String form() {
     return form;
   }
+
+  public void ausgeben() {
+    System.out.println("Schluessel");
+  }
 }

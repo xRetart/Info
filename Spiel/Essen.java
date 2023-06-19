@@ -22,4 +22,8 @@ public class Essen extends Gegenstand {
   public int getRegeneration() {
     return regeneration;
   }
+
+  public void ausgeben() {
+    System.out.println("Essen");
+  }
 }

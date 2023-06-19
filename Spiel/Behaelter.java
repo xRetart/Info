@@ -40,4 +40,12 @@ public abstract class Behaelter {
 
     return gegenstand;
   }
+  public boolean uebertragen(int index) {
+    Gegenstand gegenstand = entnehmen(index);
+    if (gegenstand == null) {
+      return true;
+    }
+
+    return truhe.lagern(gegenstand);
+  }
 }
