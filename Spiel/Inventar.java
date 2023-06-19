@@ -25,7 +25,14 @@ public class Inventar extends Behaelter {
     return super.lagern(gegenstand);
   }
 
-  public boolean entnehmen()
+  public Gegenstand entnehmen(int position) {
+    Gegenstand gegenstand = super.entnehmen(position);
+    if (gegenstand != null) {
+      gewicht -= gegenstand.getGewicht();
+    }
+
+    return gegenstand;
+  }
 
   public void ausgeben() {
     if (belegt() > 0) {
@@ -35,6 +42,7 @@ public class Inventar extends Behaelter {
       for (int i = 0; i < belegt; ++i) {
         System.out.print(" " + (i + 1) + ". ");
         gegenstaende[i].ausgeben();
+        System.out.println();
       }
       System.out.println("Es sind " + belegt() + " von " + getKapazitaet() + " plätzen belegt.");
       System.out.println("Es sind " + getGewicht() + " von " + getMaxGewicht() + " gramm genutzt.");

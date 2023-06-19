@@ -11,6 +11,6 @@ public class Schluessel extends Gegenstand {
   }
 
   public void ausgeben() {
-    System.out.println("Schluessel");
+    System.out.print("Schluessel (form: " + form + ")");
   }
 }

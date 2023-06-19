@@ -1,10 +1,10 @@
 public class Truhe extends Behaelter {
   private boolean verschlossen;
-  private String schlossTyp;
+  private String schlossForm;
 
   public Truhe(boolean verschlossen, String schlossTyp, int kapazitaet) {
     this.verschlossen = verschlossen;
-    this.schlossTyp = schlossTyp;
+    this.schlossForm = schlossTyp;
     this.inhalt = new Gegenstand[kapazitaet];
   }
 
@@ -12,11 +12,45 @@ public class Truhe extends Behaelter {
     return verschlossen;
   }
 
-  public String getSchlossTyp() {
-    return schlossTyp;
+  public String getSchlossForm() {
+    return schlossForm;
+  }
+
+  public boolean abchliessen(Schluessel schluessel) {
+    if (schlossForm != schluessel.form()) {
+      return false;
+    }
+    verschlossen = true;
+    return true;
+  }
+
+  public boolean aufschliessen(Schluessel schluessel) {
+    if (schlossForm != schluessel.form()) {
+      return false;
+    }
+    verschlossen = false;
+    return true;
+  }
+
+  public Gegenstand entnehmen(int position) {
+    if (verschlossen) {
+      return null;
+    }
+    return super.entnehmen(position);
+  }
+
+  public boolean lagern(Gegenstand gegenstand) {
+    if (verschlossen) {
+      return false;
+    }
+    return super.lagern(gegenstand);
   }
 
   public boolean uebertragen(Inventar inventar, int index) {
+    if (verschlossen) {
+      return false;
+    }
+
     Gegenstand gegenstand = entnehmen(index);
     if (gegenstand == null) {
       return true;

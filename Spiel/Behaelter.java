@@ -29,23 +29,24 @@ public abstract class Behaelter {
     return true;
   }
 
-  public Gegenstand entnehmen(int index) {
-    if (index < 0 || index >= belegt) {
+  public Gegenstand entnehmen(int position) {
+    if (position < 0 || position >= belegt) {
       return null;
     }
 
-    Gegenstand gegenstand = inhalt[index];
-    System.arraycopy(inhalt, index + 1, inhalt, index, belegt - index);
+    Gegenstand gegenstand = inhalt[position];
+    System.arraycopy(inhalt, position + 1, inhalt, position, belegt - position);
     --belegt;
 
     return gegenstand;
   }
-  public boolean uebertragen(int index) {
+
+  public boolean uebertragen(Behaelter ziel, int index) {
     Gegenstand gegenstand = entnehmen(index);
     if (gegenstand == null) {
       return true;
     }
 
-    return truhe.lagern(gegenstand);
+    return ziel.lagern(gegenstand);
   }
 }

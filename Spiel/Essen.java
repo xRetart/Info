@@ -1,7 +1,7 @@
 public class Essen extends Gegenstand {
   private int saettigung;
-  private int alter;
   private int regeneration;
+  private int alter;
 
   public Essen(int saettigung, int regeneration, int alter, int gewicht) {
     super(gewicht);
@@ -24,6 +24,7 @@ public class Essen extends Gegenstand {
   }
 
   public void ausgeben() {
-    System.out.println("Essen");
+    System.out
+        .print("Essen (sättigung: " + saettigung + ", regenerierung: " + regeneration + ", alter: " + alter + ")");
   }
 }

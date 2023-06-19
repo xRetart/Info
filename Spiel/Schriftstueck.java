@@ -15,6 +15,6 @@ public class Schriftstueck extends Gegenstand {
   }
 
   public void ausgeben() {
-    System.out.println("Schriftstueck");
+    System.out.print("Schriftstueck (inhalt: " + inhalt.length() + " Zeichen)");
   }
 }
