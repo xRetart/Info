@@ -2,9 +2,9 @@ public class Truhe extends Behaelter {
   private boolean verschlossen;
   private String schlossForm;
 
-  public Truhe(boolean verschlossen, String schlossTyp, int kapazitaet) {
+  public Truhe(boolean verschlossen, String schlossForm, int kapazitaet) {
     this.verschlossen = verschlossen;
-    this.schlossForm = schlossTyp;
+    this.schlossForm = schlossForm;
     this.inhalt = new Gegenstand[kapazitaet];
   }
 
@@ -16,19 +16,11 @@ public class Truhe extends Behaelter {
     return schlossForm;
   }
 
-  public boolean abchliessen(Schluessel schluessel) {
+  public boolean schliessen(Schluessel schluessel) {
     if (schlossForm != schluessel.form()) {
       return false;
     }
-    verschlossen = true;
-    return true;
-  }
-
-  public boolean aufschliessen(Schluessel schluessel) {
-    if (schlossForm != schluessel.form()) {
-      return false;
-    }
-    verschlossen = false;
+    verschlossen = !verschlossen;
     return true;
   }
 
@@ -60,18 +52,24 @@ public class Truhe extends Behaelter {
   }
 
   public void ausgeben() {
-    if (belegt > 0) {
-      System.out.println("Inhalt der Truhe:");
+    System.out.println("Truhe:");
+    System.out.println("\t- hat ein Schloss der Form \"" + schlossForm + "\".");
+
+    if (verschlossen) {
+      System.out.println("\t- ist verschlossen.");
+    }
+    else if (belegt > 0) {
+      System.out.println("\t- beinhaltet:");
 
       Gegenstand[] gegenstaende = inhalt;
       for (int i = 0; i < belegt; ++i) {
-        System.out.print(" " + (i + 1) + ". ");
+        System.out.print("\t\t" + (i + 1) + ". ");
         gegenstaende[i].ausgeben();
+        System.out.println();
       }
-      System.out.println("Es sind " + belegt + " von " + getKapazitaet() + " plätzen belegt.");
+      System.out.println("\t- hat " + belegt + " von " + getKapazitaet() + " plätzen belegt.");
     } else {
-      System.out.println("Die Truhe ist leer.");
+      System.out.println("\t- ist leer.");
     }
-    System.out.println();
   }
 }

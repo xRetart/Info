@@ -35,19 +35,20 @@ public class Inventar extends Behaelter {
   }
 
   public void ausgeben() {
-    if (belegt() > 0) {
-      System.out.println("Inhalt des Inventars:");
+    System.out.println("\t- inventar:");
+    if (belegt > 0) {
+      System.out.println("\t\tbeinhaltet:");
 
       Gegenstand[] gegenstaende = getInhalt();
       for (int i = 0; i < belegt; ++i) {
-        System.out.print(" " + (i + 1) + ". ");
+        System.out.print("\t\t\t" + (i + 1) + ". ");
         gegenstaende[i].ausgeben();
         System.out.println();
       }
-      System.out.println("Es sind " + belegt() + " von " + getKapazitaet() + " plätzen belegt.");
-      System.out.println("Es sind " + getGewicht() + " von " + getMaxGewicht() + " gramm genutzt.");
+      System.out.println("\t\t- hat " + belegt() + " von " + getKapazitaet() + " plätzen belegt.");
+      System.out.println("\t\t- hat " + getGewicht() + " von " + getMaxGewicht() + " gramm genutzt.");
     } else {
-      System.out.println("Das Inventar ist leer.");
+      System.out.println("\t\t- ist leer.");
     }
   }
 }

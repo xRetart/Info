@@ -25,6 +25,6 @@ public class Essen extends Gegenstand {
 
   public void ausgeben() {
     System.out
-        .print("Essen (sättigung: " + saettigung + ", regenerierung: " + regeneration + ", alter: " + alter + ")");
+        .print("Essen (sättigung: " + saettigung + ", regenerierung: " + regeneration + ", alter: " + alter + ", gewicht: " + gewicht + ")");
   }
 }
