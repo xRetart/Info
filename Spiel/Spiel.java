@@ -35,7 +35,7 @@ public class Spiel {
     return menu_eingabe_verarbeiten(eingabe);
   }
   public void menu_optionen() {
-    System.out.println("Was möchtest du machen?");
+    System.out.println("Was möchten sie machen?");
     System.out.println("[1] Gegenstand ausruesten");
     System.out.println("[2] Gegenstand lagern");
     System.out.println("[3] Gegenstand entnehmnen");
@@ -91,7 +91,7 @@ public class Spiel {
   }
 
   public void gegenstandUebertragen(Behaelter quelle, Behaelter ziel) {
-    int gegenstandPosition = eingabeZahl("Welchen Gegenstand möchten sie übertragen?");
+    int gegenstandPosition = eingabeZahl("Welchen Gegenstand möchten sie übertragen?") - 1;
     if (quelle.uebertragen(ziel, gegenstandPosition)) {
       System.out.println("Gegenstand wurde entnommen.");
     } else {
