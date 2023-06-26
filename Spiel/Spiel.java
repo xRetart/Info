@@ -9,11 +9,11 @@ public class Spiel {
   public Spiel() {
     Schluessel schluessel = new Schluessel("A", 25);
     truhe = new Truhe(false, "A", 10);
-    truhe.lagern(new Schriftstueck("Wer das liest ist doof.", 100));
+    truhe.lagern(new Schriftstueck("Das ist der Inhlat des Schriftstuecks.", 100));
     truhe.lagern(new Essen(10, 20, 3, 350));
     truhe.schliessen(schluessel);
 
-    spieler = new Spieler(40000, 10);
+    spieler = new Spieler(40000, 10, 50, 50);
     spieler.getInventar().lagern(schluessel);
   }
   public static void main(String[] args) {
@@ -53,9 +53,7 @@ public class Spiel {
       case "2":
       case "gegenstand lagern":
       case "lagern":
-        System.out.println("debug: " + spieler.getInventar().belegt());
         gegenstandUebertragen(spieler.getInventar(), truhe);
-        System.out.println("debug: " + spieler.getInventar().belegt());
         break;
 
       case "3":
@@ -67,7 +65,7 @@ public class Spiel {
       case "4":
       case "gegenstand nutzen":
       case "nutzen":
-        gegenstandNutzen();
+        spieler.ausfuehren(truhe);
         break;
 
       case "5":
@@ -96,13 +94,6 @@ public class Spiel {
       System.out.println("Gegenstand wurde entnommen.");
     } else {
       System.out.println("Der Gegenstand gibt es nicht.");
-    }
-    System.out.println("debug 2: " + quelle.belegt());
-  }
-
-  public void gegenstandNutzen() {
-    if (!spieler.ausfuehren(truhe)) {
-      System.out.println("Der gegenstand konnte nicht genutzt weden.");
     }
   }
 

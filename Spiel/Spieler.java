@@ -1,12 +1,15 @@
 public class Spieler {
     private Gegenstand hand;
     private Inventar inventar;
-    private Statuswert saettigung = new Statuswert(100, 100);
-    private Statuswert leben = new Statuswert(100, 100);
+    private Statuswert nahrung;
+    private Statuswert leben;
 
-    public Spieler(int inventarMaxGewicht, int inventarKapazitaet) {
+    public Spieler(int inventarMaxGewicht, int inventarKapazitaet, int nahrung, int saettigung) {
         hand = null;
         inventar = new Inventar(inventarMaxGewicht, inventarKapazitaet);
+
+        this.nahrung = new Statuswert(nahrung, 100);
+        this.leben = new Statuswert(saettigung, 100);
     }
 
     public Gegenstand ausgeruested() {
@@ -31,34 +34,41 @@ public class Spieler {
         return inventar;
     }
 
-    public boolean ausfuehren(Truhe truhe) {
+    public void ausfuehren(Truhe truhe) {
         if (hand == null) {
-            return false;
+            return;
         }
 
         if (hand instanceof Essen) {
-            return essen((Essen)hand);
+            essen((Essen)hand);
         } else if (hand instanceof Schriftstueck) {
-            return lesen((Schriftstueck)hand);
+            lesen((Schriftstueck)hand);
         } else if (hand instanceof Schluessel) {
-            return schliessen((Schluessel)hand, truhe);
+            schliessen((Schluessel)hand, truhe);
         } else {
-            System.out.println("Gegenstand typ ist nicht für ausführen implementiert.");
-            return false;
+            System.out.println("Gegenstandtyp ist nicht ausführbar.");
         }
     }
-    public boolean essen(Essen essen) {
-        saettigung.erhoehen(((Essen) hand).getSaettigung());
+    public void essen(Essen essen) {
+        nahrung.erhoehen(((Essen) hand).getSaettigung());
         leben.erhoehen(((Essen) hand).getRegeneration());
-        essen = null;
-        return true;
+        hand = null;
+
+        System.out.println("Das Essen wurde gegessen.");
     }
-    public boolean lesen(Schriftstueck schriftstueck) {
-        System.out.println(((Schriftstueck) hand).lesen());
-        return true;
+    public void lesen(Schriftstueck schriftstueck) {
+        System.out.println("Auf dem Schriftstueck steht: \"" + ((Schriftstueck) hand).lesen() + '"');
     }
-    public boolean schliessen(Schluessel schluessel, Truhe truhe) {
-        return truhe.schliessen((Schluessel) hand);
+    public void schliessen(Schluessel schluessel, Truhe truhe) {
+        boolean erfolg = truhe.schliessen((Schluessel) hand);
+
+        if (!erfolg) {
+            System.out.println("Die Schlüsselform (\"" + schluessel.form() + "\") passt nicht zu der Schlossform (\"" + truhe.getSchlossForm() + "\").");
+        } else if (truhe.istVerschlossen()) {
+            System.out.println("Die Truhe wurde verschlossen.");
+        } else {
+            System.out.println("Die Truhe wurde geöffnet.");
+        }
     }
 
     public void ausgeben() {
@@ -70,6 +80,9 @@ public class Spieler {
             hand.ausgeben();
         }
         System.out.println(" in der hand.");
+
+        System.out.println("\t- hat " + nahrung.wert + " von " + nahrung.maximum + " Nahrungspunkten");
+        System.out.println("\t- hat " + leben.wert + " von " + leben.maximum + " Lebenspunkten.");
 
         inventar.ausgeben();
     }
