@@ -1,0 +1,72 @@
+package RechnerGui;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+public class Window {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Window window = new Window();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Window() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel labelErgebnis = new JLabel("0");
+		labelErgebnis.setBounds(52, 12, 77, 17);
+		frame.getContentPane().add(labelErgebnis);
+		
+		JButton button1 = new JButton("1");
+		button1.setBounds(52, 46, 41, 27);
+		frame.getContentPane().add(button1);
+		button1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				labelErgebnis.setText(labelErgebnis.getText() + "1");
+			}
+		});
+		
+		JButton button2 = new JButton("2");
+		button2.setBounds(52, 89, 41, 27);
+		frame.getContentPane().add(button2);
+		
+		JButton buttonPlus = new JButton("+");
+		buttonPlus.setBounds(126, 46, 66, 27);
+		frame.getContentPane().add(buttonPlus);
+		
+		JButton buttonErgebnis = new JButton("=");
+		buttonErgebnis.setBounds(126, 89, 66, 27);
+		frame.getContentPane().add(buttonErgebnis);
+	}
+}
