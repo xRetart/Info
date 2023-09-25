@@ -1,9 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<section name="org.eclipse.wb.internal.core.nls.ui.NlsDialog">
-		<item key="x" value="344"/>
-		<item key="y" value="215"/>
-		<item key="width" value="683"/>
-		<item key="height" value="370"/>
-	</section>
 </section>

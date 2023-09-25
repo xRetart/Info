@@ -1,4 +1,4 @@
-USE_ROUND_TABS=true
+USE_ROUND_TABS=false
 eclipse.preferences.version=1
 enableMRU=true
 themeEnabled=true
