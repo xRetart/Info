@@ -146,7 +146,6 @@ public class Window {
 						array = new ArrayList<Daten>();
 					}
 					for (var angestellt : array) {
-						ausgabeListe.
 					}
 					array.add(daten);
 					speicher.speichern(array);
