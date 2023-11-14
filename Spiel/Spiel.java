@@ -9,7 +9,7 @@ public class Spiel {
   public Spiel() {
     Schluessel schluessel = new Schluessel("A", 25);
     truhe = new Truhe(false, "A", 10);
-    truhe.lagern(new Schriftstueck("Das ist der Inhlat des Schriftstuecks.", 100));
+    truhe.lagern(new Schriftstueck("Das ist der Inhalt des Schriftstuecks.", 100));
     truhe.lagern(new Essen(10, 20, 3, 350));
     truhe.schliessen(schluessel);
 
@@ -37,10 +37,11 @@ public class Spiel {
   public void menu_optionen() {
     System.out.println("Was möchten sie machen?");
     System.out.println("[1] Gegenstand ausruesten");
-    System.out.println("[2] Gegenstand lagern");
-    System.out.println("[3] Gegenstand entnehmnen");
-    System.out.println("[4] Gegenstand nutzen");
-    System.out.println("[5] Spiel beenden");
+    System.out.println("[2] Gegenstad abrüsten");
+    System.out.println("[3] Gegenstand lagern");
+    System.out.println("[4] Gegenstand entnehmnen");
+    System.out.println("[5] Gegenstand nutzen");
+    System.out.println("[6] Spiel beenden");
   }
   public boolean menu_eingabe_verarbeiten(String eingabe) {
     switch (eingabe.toLowerCase()) {
@@ -51,24 +52,30 @@ public class Spiel {
         break;
 
       case "2":
+      case "gegenstand abrüsten":
+      case "abrüsten":
+        spieler.abruesten();
+        break;
+
+      case "3":
       case "gegenstand lagern":
       case "lagern":
         gegenstandUebertragen(spieler.getInventar(), truhe);
         break;
 
-      case "3":
+      case "4":
       case "gegenstand entnehmen":
       case "entnehmen":
         gegenstandUebertragen(truhe, spieler.getInventar());
         break;
 
-      case "4":
+      case "5":
       case "gegenstand nutzen":
       case "nutzen":
         spieler.ausfuehren(truhe);
         break;
 
-      case "5":
+      case "6":
       case "spiel beenden":
       case "beenden":
         System.out.println("Das Menu wird geschlossen.");
@@ -93,7 +100,7 @@ public class Spiel {
     if (quelle.uebertragen(ziel, gegenstandPosition)) {
       System.out.println("Gegenstand wurde entnommen.");
     } else {
-      System.out.println("Der Gegenstand gibt es nicht.");
+      System.out.println("Der Gegenstand konnte nicht übertragen werden.");
     }
   }
 

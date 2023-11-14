@@ -44,7 +44,7 @@ public abstract class Behaelter {
   public boolean uebertragen(Behaelter ziel, int index) {
     Gegenstand gegenstand = entnehmen(index);
     if (gegenstand == null) {
-      return true;
+      return false;
     }
 
     return ziel.lagern(gegenstand);

@@ -29,6 +29,18 @@ public class Spieler {
 
         return true;
     }
+    public void abruesten() {
+        if (hand == null) {
+            System.out.println("Der Spieler hat nichts in der Hand.");
+            return;
+        }
+        if (inventar.lagern(hand)) {
+            hand = null;
+            System.out.println("Gegenstand wurde abgerüstet.");
+        } else {
+            System.out.println("Im Inventar ist nicht genug Platz um den Gegenstand zu lagern.");
+        }
+    }
 
     public Inventar getInventar() {
         return inventar;
