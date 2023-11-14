@@ -23,7 +23,7 @@ public class Window {
 	private JTextField textField;
 	private JButton btnHerausnehmen;
 	
-	private Vector<String> inventar;
+	private Vector<String> inventar = new Vector<>();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -44,7 +44,7 @@ public class Window {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 416, 570);
+		frame.setBounds(100, 100, 416, 98);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		var comboBox = new JComboBox<>(inventar);
@@ -52,15 +52,15 @@ public class Window {
 		frame.getContentPane().add(comboBox, BorderLayout.NORTH);
 		
 		textField = new JTextField();
-		frame.getContentPane().add(textField, BorderLayout.WEST);
+		frame.getContentPane().add(textField, BorderLayout.CENTER);
 		textField.setColumns(10);
 		
 		JButton btnHinzufgen = new JButton("Hinzufügen");
 		btnHinzufgen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				var text = textField.getText();
-				moeglichkeiten.add(text);
-				Collections.sort(moeglichkeiten);
+				inventar.add(text);
+				Collections.sort(inventar);
 				comboBox.setSelectedItem(text);
 				textField.setText("");
 			}
@@ -70,13 +70,18 @@ public class Window {
 		btnHerausnehmen = new JButton("Herausnehmen");
 		btnHerausnehmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				moeglichkeiten.remove(comboBox.getSelectedIndex());
-				comboBox.setSelectedIndex(0);
+				if (!inventar.isEmpty()) {
+					inventar.remove(comboBox.getSelectedIndex());
+				}
+				
+				if (!inventar.isEmpty()) {
+					comboBox.setSelectedIndex(0);
+				}
+				else {
+					comboBox.setSelectedItem(null);
+				}
 			}
 		});
-		frame.getContentPane().add(btnHerausnehmen, BorderLayout.CENTER);
-	}
-	private void sortieren() {
-		
+		frame.getContentPane().add(btnHerausnehmen, BorderLayout.WEST);
 	}
 }
